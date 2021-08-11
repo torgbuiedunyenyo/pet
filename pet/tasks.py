@@ -814,7 +814,7 @@ PROCESSORS = {
     "record": RecordProcessor,
     "ax-g": AxGProcessor,
     "ax-b": AxBProcessor,
-    "my-task-pvp-2": AMyTaskPVP2,
+    "my-task-pvp-2": MyTaskPVP2,
 }  # type: Dict[str,Callable[[],DataProcessor]]
 
 TASK_HELPERS = {
