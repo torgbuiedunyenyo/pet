@@ -761,7 +761,7 @@ class RecordProcessor(DataProcessor):
                     f"distribution {list(label_distribution.items())}")
         return examples
 
-class AMyTaskPVP2(DataProcessor):
+class MyTaskPVP2(DataProcessor):
     """Processor for the AG news data set."""
 
     def get_train_examples(self, data_dir):

@@ -32,13 +32,6 @@ class MyTaskPVP2(PVP):
     # Set this to the name of the task
     TASK_NAME = "my-task-pvp-2"
 
-    # Set this to the verbalizer for the given task: a mapping from the task's labels (which can be obtained using
-    # the corresponding DataProcessor's get_labels method) to tokens from the language model's vocabulary
-    VERBALIZER = {}
-
-    with open('/content/drive/MyDrive/Handshake/Handshake_Secure/Handshake_US/BMNT/InsightAI/Files_in_use/verbalizers.json') as json_file:
-        VERBALIZER = json.load(json_file)
-
 
 
 
