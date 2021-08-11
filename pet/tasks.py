@@ -786,10 +786,8 @@ class AMyTaskPVP2(DataProcessor):
         with open(path) as f:
             reader = csv.reader(f, delimiter=',')
             for idx, row in enumerate(reader):
-                label, Problems, body = row
+                label, Problems = row
                 guid = "%s-%s" % (set_type, idx)
-                text_a = Problems.replace('\\', ' ')
-                text_b = body.replace('\\', ' ')
 
                 example = InputExample(guid=guid, text_a=text_a)
                 examples.append(example)
@@ -816,6 +814,7 @@ PROCESSORS = {
     "record": RecordProcessor,
     "ax-g": AxGProcessor,
     "ax-b": AxBProcessor,
+    "my-task-pvp-2": AMyTaskPVP2,
 }  # type: Dict[str,Callable[[],DataProcessor]]
 
 TASK_HELPERS = {
