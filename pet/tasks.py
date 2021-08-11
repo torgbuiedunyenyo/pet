@@ -786,9 +786,9 @@ class AMyTaskPVP2(DataProcessor):
         with open(path) as f:
             reader = csv.reader(f, delimiter=',')
             for idx, row in enumerate(reader):
-                label, headline, body = row
+                label, Problems, body = row
                 guid = "%s-%s" % (set_type, idx)
-                text_a = headline.replace('\\', ' ')
+                text_a = Problems.replace('\\', ' ')
                 text_b = body.replace('\\', ' ')
 
                 example = InputExample(guid=guid, text_a=text_a)
