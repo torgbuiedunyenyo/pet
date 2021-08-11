@@ -9,6 +9,7 @@ import random
 import torch
 from transformers import PreTrainedTokenizer, RobertaTokenizer
 
+import petal
 from pet.tasks import PROCESSORS, load_examples, TRAIN_SET
 from pet.utils import InputExample, eq_div
 from pet.wrapper import TransformerModelWrapper, MODEL_CLASSES, WrapperConfig
@@ -91,6 +92,9 @@ class AutomaticVerbalizerSearch:
                         raise ValueError(f"Score function '{score_fct}' not implemented")
 
         return {label: [w for w, _ in scores[label].most_common(words_per_label)] for label in self.labels}
+
+    def get_labels(self, labels) -> [List[str]]:
+        return labels
 
     @staticmethod
     def log_likelihood_ratio(predictions: np.ndarray, expected: np.ndarray, normalize: bool) -> float:

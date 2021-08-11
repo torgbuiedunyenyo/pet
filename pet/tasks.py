@@ -23,6 +23,7 @@ from collections import defaultdict, Counter
 from typing import List, Dict, Callable
 
 import log
+import petal
 from pet import task_helpers
 from pet.utils import InputExample
 
@@ -118,7 +119,6 @@ class DataProcessor(ABC):
     def get_labels(self) -> List[str]:
         """Get the list of labels for this data set."""
         pass
-
 
 class MnliProcessor(DataProcessor):
     """Processor for the MultiNLI data set (GLUE version)."""
@@ -761,6 +761,40 @@ class RecordProcessor(DataProcessor):
                     f"distribution {list(label_distribution.items())}")
         return examples
 
+class AMyTaskPVP2(DataProcessor):
+    """Processor for the AG news data set."""
+
+    def get_train_examples(self, data_dir):
+        return self._create_examples(os.path.join(data_dir, "train.csv"), "train")
+
+    def get_dev_examples(self, data_dir):
+        return self._create_examples(os.path.join(data_dir, "test.csv"), "dev")
+
+    def get_test_examples(self, data_dir) -> List[InputExample]:
+        raise NotImplementedError()
+
+    def get_unlabeled_examples(self, data_dir) -> List[InputExample]:
+        return self.get_train_examples(data_dir)
+
+    def get_labels(self):
+        return petal.AutomaticVerbalizerSearch.get_labels()
+
+    @staticmethod
+    def _create_examples(path: str, set_type: str) -> List[InputExample]:
+        examples = data_list1
+
+        with open(path) as f:
+            reader = csv.reader(f, delimiter=',')
+            for idx, row in enumerate(reader):
+                label, headline, body = row
+                guid = "%s-%s" % (set_type, idx)
+                text_a = headline.replace('\\', ' ')
+                text_b = body.replace('\\', ' ')
+
+                example = InputExample(guid=guid, text_a=text_a)
+                examples.append(example)
+
+        return examples
 
 PROCESSORS = {
     "mnli": MnliProcessor,
