@@ -27,6 +27,7 @@ import petal
 
 my_labels = petal.AutomaticVerbalizerSearch.get_labels()
 
+
 class MyTaskDataProcessor(DataProcessor):
     """
     Example for a data processor.
