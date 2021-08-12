@@ -617,34 +617,6 @@ class RecordPVP(PVP):
     def verbalize(self, label) -> List[str]:
         return []
 
-class MyTaskPVP2(PVP):
-    VERBALIZER = {}
-
-    with open(
-            '/content/drive/MyDrive/Handshake/Handshake_Secure/Handshake_US/BMNT/InsightAI/Files_in_use/verbalizers.json') as json_file:
-        VERBALIZER = json.load(json_file)
-
-    def get_parts(self, example: InputExample) -> FilledPattern:
-
-        text_a = self.shortenable(example.text_a)
-
-        if self.pattern_id == 0:
-            return [self.mask, labels[0], text_a], []
-        elif self.pattern_id == 1:
-            return [self.mask, petal.labels[1], text_a], []
-        elif self.pattern_id == 2:
-            return [text_a, '(', self.mask, ')'], []
-        elif self.pattern_id == 3:
-            return [text_a, '(', self.mask, ')'], []
-        elif self.pattern_id == 4:
-            return ['[ Category:', self.mask, ']', text_a], []
-        elif self.pattern_id == 5:
-            return [self.mask, '-', text_a], []
-        else:
-            raise ValueError("No pattern implemented for id {}".format(self.pattern_id))
-
-    def verbalize(self, label) -> List[str]:
-        return MyTaskPVP2.VERBALIZER[label]
 
 PVPS = {
     'agnews': AgnewsPVP,
@@ -665,5 +637,4 @@ PVPS = {
     'record': RecordPVP,
     'ax-b': RtePVP,
     'ax-g': RtePVP,
-    'my-task-pvp-2': MyTaskPVP2,
 }

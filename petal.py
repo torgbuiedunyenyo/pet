@@ -9,7 +9,6 @@ import random
 import torch
 from transformers import PreTrainedTokenizer, RobertaTokenizer
 
-import petal
 from pet.tasks import PROCESSORS, load_examples, TRAIN_SET
 from pet.utils import InputExample, eq_div
 from pet.wrapper import TransformerModelWrapper, MODEL_CLASSES, WrapperConfig

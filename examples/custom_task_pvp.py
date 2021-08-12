@@ -18,6 +18,7 @@ This file shows an example of a PVP for a new task.
 """
 
 from typing import List
+import json
 
 from pet.pvp import PVP, PVPS
 from pet.utils import InputExample
@@ -33,12 +34,8 @@ class MyTaskPVP(PVP):
 
     # Set this to the verbalizer for the given task: a mapping from the task's labels (which can be obtained using
     # the corresponding DataProcessor's get_labels method) to tokens from the language model's vocabulary
-    VERBALIZER = {
-        "1": ["World"],
-        "2": ["Sports"],
-        "3": ["Business"],
-        "4": ["Tech"]
-    }
+    f = open('data.json', )
+    VERBALIZER = data = json.load(f)
 
     def get_parts(self, example: InputExample):
         """

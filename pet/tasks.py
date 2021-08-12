@@ -761,40 +761,6 @@ class RecordProcessor(DataProcessor):
                     f"distribution {list(label_distribution.items())}")
         return examples
 
-class MyTaskPVP2(DataProcessor):
-    """Processor for me"""
-
-    def get_train_examples(self, data_dir):
-        return self._create_examples(os.path.join(data_dir, "train.csv"), "train")
-
-    def get_dev_examples(self, data_dir):
-        return self._create_examples(os.path.join(data_dir, "test.csv"), "dev")
-
-    def get_test_examples(self, data_dir) -> List[InputExample]:
-        raise NotImplementedError()
-
-    def get_unlabeled_examples(self, data_dir) -> List[InputExample]:
-        return self.get_train_examples(data_dir)
-
-    def get_labels(self):
-        return petal.AutomaticVerbalizerSearch.get_labels()
-
-    @staticmethod
-    def _create_examples(path: str, set_type: str) -> List[InputExample]:
-        examples = []
-
-        with open(path) as f:
-            reader = csv.reader(f, delimiter=',')
-            for idx, row in enumerate(reader):
-                problems = row
-                guid = "%s-%s" % (set_type, idx)
-                problems = problems
-
-                example = InputExample(guid=guid, problems=problems)
-                examples.append(example)
-
-        return examples
-
 
 PROCESSORS = {
     "mnli": MnliProcessor,
@@ -816,7 +782,6 @@ PROCESSORS = {
     "record": RecordProcessor,
     "ax-g": AxGProcessor,
     "ax-b": AxBProcessor,
-    "my-task-pvp-2": MyTaskPVP2,
 }  # type: Dict[str,Callable[[],DataProcessor]]
 
 

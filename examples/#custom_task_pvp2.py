@@ -24,7 +24,7 @@ from pet.pvp import PVP, PVPS
 from pet.utils import InputExample
 
 
-class MyTaskPVP2(PVP):
+#class MyTaskPVP2(PVP):
     """
     Example for a pattern-verbalizer pair (PVP).
     """
