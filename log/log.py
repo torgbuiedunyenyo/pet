@@ -13,9 +13,8 @@
 """
 This file contains basic logging logic.
 """
-import logging
 
-names = set('logdefault')
+names = set()
 
 
 def __setup_custom_logger(name: str) -> logging.Logger:
