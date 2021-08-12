@@ -23,7 +23,6 @@ from collections import defaultdict, Counter
 from typing import List, Dict, Callable
 
 import log
-import petal
 from pet import task_helpers
 from pet.utils import InputExample
 
@@ -33,7 +32,6 @@ logger = log.get_logger('root')
 def _shuffle_and_restrict(examples: List[InputExample], num_examples: int, seed: int = 42) -> List[InputExample]:
     """
     Shuffle a list of examples and restrict it to a given maximum size.
-
     :param examples: the examples to shuffle and restrict
     :param num_examples: the maximum number of examples
     :param seed: the random seed for shuffling
@@ -49,7 +47,6 @@ class LimitedExampleList:
     def __init__(self, labels: List[str], max_examples=-1):
         """
         Implementation of a list that stores only a limited amount of examples per label.
-
         :param labels: the set of all possible labels
         :param max_examples: the maximum number of examples per label. This can either be a fixed number,
                in which case `max_examples` examples are loaded for every label, or a list with the same size as
@@ -74,7 +71,6 @@ class LimitedExampleList:
     def add(self, example: InputExample) -> bool:
         """
         Add a new input example to this list.
-
         :param example: the example to add
         :returns: `true` iff the example was actually added to the list
         """
@@ -119,6 +115,7 @@ class DataProcessor(ABC):
     def get_labels(self) -> List[str]:
         """Get the list of labels for this data set."""
         pass
+
 
 class MnliProcessor(DataProcessor):
     """Processor for the MultiNLI data set (GLUE version)."""
@@ -783,7 +780,6 @@ PROCESSORS = {
     "ax-g": AxGProcessor,
     "ax-b": AxBProcessor,
 }  # type: Dict[str,Callable[[],DataProcessor]]
-
 
 TASK_HELPERS = {
     "wsc": task_helpers.WscTaskHelper,
