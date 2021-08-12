@@ -2,11 +2,11 @@ from setuptools import setup
 
 setup(
     name='pet',
-    version='',
+    version='1.0',
     packages=['pet', 'examples'],
-    url='',
+    url='A',
     license='',
     author='ratpartyserver',
-    author_email='',
-    description=''
+    author_email='A',
+    description='A'
 )
