@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='pet',
     version='1.0',
-    packages=['pet', 'examples'],
+    packages=['pet', 'examples', 'log'],
     url='A',
     license='',
     author='ratpartyserver',
