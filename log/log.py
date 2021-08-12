@@ -15,7 +15,7 @@ This file contains basic logging logic.
 """
 import logging
 
-names = set()
+names = set('logdefault')
 
 
 def __setup_custom_logger(name: str) -> logging.Logger:
