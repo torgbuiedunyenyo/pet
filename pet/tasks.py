@@ -762,7 +762,7 @@ class RecordProcessor(DataProcessor):
         return examples
 
 class MyTaskPVP2(DataProcessor):
-    """Processor for the AG news data set."""
+    """Processor for me"""
 
     def get_train_examples(self, data_dir):
         return self._create_examples(os.path.join(data_dir, "train.csv"), "train")
@@ -781,15 +781,16 @@ class MyTaskPVP2(DataProcessor):
 
     @staticmethod
     def _create_examples(path: str, set_type: str) -> List[InputExample]:
-        examples = data_list1
+        examples = []
 
         with open(path) as f:
             reader = csv.reader(f, delimiter=',')
             for idx, row in enumerate(reader):
-                label, Problems = row
+                problems = row
                 guid = "%s-%s" % (set_type, idx)
+                problems = problems
 
-                example = InputExample(guid=guid, text_a=text_a)
+                example = InputExample(guid=guid, problems=problems)
                 examples.append(example)
 
         return examples
@@ -816,6 +817,7 @@ PROCESSORS = {
     "ax-b": AxBProcessor,
     "my-task-pvp-2": MyTaskPVP2,
 }  # type: Dict[str,Callable[[],DataProcessor]]
+
 
 TASK_HELPERS = {
     "wsc": task_helpers.WscTaskHelper,
